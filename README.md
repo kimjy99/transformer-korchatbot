@@ -75,7 +75,7 @@ Changed: &nbsp; `x + SubLayer( LayerNorm(x) )`
 | 하루종일 머리가 아프네 | 좋은 일이 생길 거예요. |
 | 내일 시험인데 하나도 공부를 못 했어 | 세상은 넓고 사람은 많아요. |
 
-Completed sentences are maded well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset was small. 
+Completed sentences are made well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset was small. 
 
 ### Attention Map
 <p align='center'>
