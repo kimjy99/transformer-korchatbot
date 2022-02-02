@@ -1,2 +1,89 @@
-# transformer-korchatbot
-A Pytorch implementation of transformer (Attention Is All You Need - Google Brain, 2017). I used Korean chatbot dataset to train my transformer model.
+# Transformer (Attention Is All You Need)
+
+A PyTorch implementation of transformer ([Attention Is All You Need](https://arxiv.org/abs/1706.03762) - Google Brain, 2017).  
+I used [Korean chatbot dataset](https://github.com/songys/Chatbot_data) to train my transformer model. 
+
+### Dataset
+The Korean chatbot dataset has 11823 Q&A pairs.  
+I downloaded dataset from github as below.
+
+```python
+import urllib.request
+import pandas as pd
+
+urllib.request.urlretrieve("https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData.csv", filename="ChatBotData.csv")
+train_data = pd.read_csv('ChatBotData.csv')
+```
+
+I used subword tokenizer of `tensorflow_datasets` python library.  
+
+```python
+import tensorflow_datasets as tfds
+tokenizer = tfds.deprecated.text.SubwordTextEncoder.build_from_corpus(questions + answers, target_vocab_size=2**13)
+```
+
+Maximum length of tokenized sentence is 29. The following graph shows a distribution of dataset. 
+
+<p align='center'>
+    <img src='./images/dataset-plot.png'>
+</p>
+
+### Model
+I used a transformer model with 2 layers of encoder and 2 layers of decoder.  
+<p align='center'>
+    <img src='./images/model.png' width=450px>
+</p>
+
+Hyper Parameters:  
+```
+d_model = 256
+num_layers = 2
+num_heads = 8
+d_ff = 512
+
+batch_size = 64
+epochs = 50
+warmup_step = 4000
+dropout = 0.1
+```
+
+There are some differences with the original paper. 
+
+- Change output of each sub-layer ([Reference article](https://tunz.kr/post/4))  
+Original: &nbsp; `LayerNorm( x + SubLayer(x) )`  
+Changed: &nbsp; `x + SubLayer( LayerNorm(x) )`
+
+- Multiply transpose of weight of token embedding layer with output rather than using fully connected layer and softmax layer. ([Reference github code](https://github.com/Huffon/pytorch-transformer-kor-eng/blob/master/model/decoder.py))
+
+    ```python
+    x = self.ln(x)
+    x = torch.matmul(x, self.embed.weight.transpose(0, 1))
+    ```
+
+
+### Loss
+<p align='center'>
+    <img src='./images/loss.png'>
+</p>
+
+### Example
+| Input | Output |
+| --- | --- |
+| 같이 1박2일 여행 갈까? | 함께 해도 좋을 것 같아요. |
+| 내일 우리 같이 영화나 볼까? | 누구나 일에 집중 할 거예요. |
+| 오늘 점심은 뭘 먹어야 할지 모르겠네 | 맛있는 거 드세요. | 
+| 하루종일 머리가 아프네 | 좋은 일이 생길 거예요. |
+| 내일 시험인데 하나도 공부를 못 했어 | 세상은 넓고 사람은 많아요. |
+
+Completed sentences are maded well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset was small. 
+
+### Attention Map
+<p align='center'>
+    <img src='./images/attention-map.png' width=450px>
+</p>
+
+
+### References
+https://wikidocs.net/31379  
+https://tunz.kr/post/4  
+https://github.com/Huffon/pytorch-transformer-kor-eng/blob/master/model/decoder.py  
