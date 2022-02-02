@@ -5,6 +5,14 @@ I used [Korean chatbot dataset](https://github.com/songys/Chatbot_data) to train
 
 ### Dataset
 The Korean chatbot dataset has 11823 Q&A pairs.  
+| Questions | Answers |
+| --- | --- |
+| 12시 땡! | 하루가 또 가네요.|
+| 1지망 학교 떨어졌어 | 위로해 드립니다. |
+| 3박4일 놀러가고 싶다 | 여행은 언제나 좋죠. |
+| 3박4일 정도 놀러가고 싶다 | 여행은 언제나 좋죠. |
+| PPL 심하네 | 눈살이 찌푸려지죠. |
+
 I downloaded dataset from github as below.
 
 ```python
@@ -82,6 +90,8 @@ Completed sentences are made well, but there are many answers that do not fit th
     <img src='./images/attention-map.png' width=450px>
 </p>
 
+### TODO
+- Beam Search
 
 ### References
 https://wikidocs.net/31379  
