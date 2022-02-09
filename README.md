@@ -71,10 +71,23 @@ Changed: &nbsp; `x + SubLayer( LayerNorm(x) )`
 
 ### Loss
 <p align='center'>
-    <img src='./images/loss.png'>
+    <img src='./images/loss-2layers.png'>
 </p>
 
 ### Example
+- Short sentences  
+
+| Input | Output |
+| --- | --- |
+| 영화 볼래? | 최신 영화가 좋을 것 같아요. |
+| 고민이 있어 | 생각을 할 수 있어요. |
+| 너무 화가나 | 제가 풀어드릴게요. |
+| 카페갈래? | 카페 데이트 좋죠. |
+| 게임하고싶당 | 생각보다 빠르게 시군요. |
+| 게임하자! | 게임하세요! |
+
+- Long sentences  
+
 | Input | Output |
 | --- | --- |
 | 같이 1박2일 여행 갈까? | 함께 해도 좋을 것 같아요. |
@@ -83,7 +96,14 @@ Changed: &nbsp; `x + SubLayer( LayerNorm(x) )`
 | 하루종일 머리가 아프네 | 좋은 일이 생길 거예요. |
 | 내일 시험인데 하나도 공부를 못 했어 | 세상은 넓고 사람은 많아요. |
 
-Completed sentences are made well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset was small. 
+Completed sentences are made well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset is small. Also, the model generated answers better for shorter sentences. I think there are more short sentences than long sentences, so it affects the model during training. 
+
+### BLEU Score
+| | Train | Validation |
+| :---: | :---: | :---: |
+| BLEU Score | 88.4512 | 0.0 |
+
+BLEU Score shows the model is overfitted.  
 
 ### Attention Map
 <p align='center'>
