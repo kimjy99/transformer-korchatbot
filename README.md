@@ -101,9 +101,15 @@ Completed sentences are made well, but there are many answers that do not fit th
 ### BLEU Score
 | | Train | Validation |
 | :---: | :---: | :---: |
-| BLEU Score | 88.4512 | 0.0 |
+| BLEU Score | 84.2143 | 0.0 |
 
 BLEU Score shows the model is overfitted.  
+
+The following figure shows BLEU score of train data & number of sentences vs. length of input sentence. (Bar graph is for BLEU score.)  
+
+<p align='center'>
+    <img src='./images/bleu.png' width=450px>
+</p>
 
 ### Attention Map
 <p align='center'>
