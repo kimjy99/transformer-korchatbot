@@ -79,37 +79,32 @@ Changed: &nbsp; `x + SubLayer( LayerNorm(x) )`
 
 | Input | Output |
 | --- | --- |
-| 영화 볼래? | 최신 영화가 좋을 것 같아요. |
-| 고민이 있어 | 생각을 할 수 있어요. |
-| 너무 화가나 | 제가 풀어드릴게요. |
-| 카페갈래? | 카페 데이트 좋죠. |
-| 게임하고싶당 | 생각보다 빠르게 시군요. |
+| 영화 볼래? | 직접 물어보세요. |
+| 고민이 있어 | 그러면 안돼요. |
+| 너무 화가나 | 그럴 수 있어요. |
+| 카페갈래? | 카페 면 돼요. |
+| 게임하고싶당 | 저도요! |
 | 게임하자! | 게임하세요! |
 
 - Long sentences  
 
 | Input | Output |
 | --- | --- |
-| 같이 1박2일 여행 갈까? | 함께 해도 좋을 것 같아요. |
-| 내일 우리 같이 영화나 볼까? | 누구나 일에 집중 할 거예요. |
-| 오늘 점심은 뭘 먹어야 할지 모르겠네 | 맛있는 거 드세요. | 
-| 하루종일 머리가 아프네 | 좋은 일이 생길 거예요. |
-| 내일 시험인데 하나도 공부를 못 했어 | 세상은 넓고 사람은 많아요. |
+| 같이 1박2일 여행 갈까? | 안 가본 좋을 것 같아요. |
+| 내일 우리 같이 영화나 볼까? | 사랑 가능할 것 같아요. |
+| 오늘 점심은 뭘 먹어야 할지 모르겠네 | 저도 좋아해주세요. | 
+| 하루종일 머리가 아프네 | 시원한 바람 쉬고 약먹기! |
+| 내일 시험인데 하나도 공부를 못 했어 | 컨디션 조절 하세요. |
 
-Completed sentences are made well, but there are many answers that do not fit the questions. I think the model is overfitted because the size of the dataset is small. Also, the model generated answers better for shorter sentences. I think there are more short sentences than long sentences, so it affects the model during training. 
+Completed sentences are made well, but there are many answers that do not fit the questions. 
+
 
 ### BLEU Score
-| | Train | Validation |
-| :---: | :---: | :---: |
-| BLEU Score | 84.2143 | 0.0 |
+| | Train | Validation | Test |
+| :---: | :---: | :---: | :---: |
+| BLEU Score | 10.8610 | 12.5870 | 3.1567 |
 
-BLEU Score shows the model is overfitted.  
-
-The following figure shows BLEU score of train data & number of sentences vs. length of input sentence. (Bar graph is for BLEU score.)  
-
-<p align='center'>
-    <img src='./images/bleu.png' width=450px>
-</p>
+BLEU score is too low.
 
 ### Attention Map
 <p align='center'>
